@@ -72,5 +72,26 @@ const verifyToken = (req, res, next) => {
   });
 };
 
+const postlogindata = async(req,res)=>{
+    try{
+        const db= await database.usersrecordDB();
+        const collection=db.collection('userspasswords');
+        const result=await collection.insertOne(req.body);
+        if(result.acknowledged==true){
+        res.json({
+            message:'login records added succesfully',
+            data:result
+        });
+        }
+        else{
+              res.status(500).json({ message: 'Failed to add login record' });
+        }
+    }
+    catch(err){
+        console.error('Error in adding login data',err);
+        res.status(500).json({message:'internal servor error'});
+    }
+}
 
-module.exports = {searchrecord,verifyToken,getuserdata};
+
+module.exports = {searchrecord,verifyToken,getuserdata,postlogindata};

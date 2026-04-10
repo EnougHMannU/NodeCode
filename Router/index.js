@@ -28,6 +28,7 @@ router.delete('/deletecdata/:name',cu.deletecoursedata);
 //userslogin record api
 router.post('/searchlogindata', lgr.searchrecord);
 router.get('/getUser', lgr.verifyToken, lgr.getuserdata);
+router.post('/postlogindata',lgr.postlogindata);
 
 //reactdataapi
 router.get('/getreact',rct.getreactdata);
